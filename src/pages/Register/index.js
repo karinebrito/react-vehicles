@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import estados from "./estados.json";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function Register() {
+  const location = useLocation();
   const navigate = useNavigate();
+  const [chassi, setChassi] = useState(location.state?.vehicle?.chassi);
+  const [renavam, setRenavam] = useState(location.state?.vehicle?.renavam);
+  const [UF, setUF] = useState(location.state?.vehicle?.UF);
+  const [plate, setPlate] = useState(location.state?.vehicle?.plate);
+  const [productionYear, setProductionYear] = useState(
+    location.state?.vehicle?.productionYear
+  );
+  const [modelYear, setModelYear] = useState(
+    location.state?.vehicle?.modelYear
+  );
+  const [color, setColor] = useState("");
+  useState(location.state?.vehicle?.color);
 
   const handleSave = (event) => {
     const isFormValid = event.target.form.checkValidity();
@@ -14,42 +27,48 @@ export default function Register() {
       return;
     }
     event.preventDefault();
-    const chassi = document.getElementById("chassi");
-    const renavam = document.getElementById("renavam");
-    const UF = document.getElementById("uf");
-    const plate = document.getElementById("plate");
-    const productionYear = document.getElementById("production-year");
-    const modelYear = document.getElementById("model-year");
-    const color = document.getElementById("color");
 
     const vehicle = {
-      id: Date.now(),
-      chassi: chassi.value,
-      renavam: renavam.value,
-      UF: UF.value,
-      plate: plate.value,
-      productionYear: productionYear.value,
-      modelYear: modelYear.value,
-      color: color.value,
+      id: location.state?.vehicle?.id ?? Date.now(),
+      chassi: chassi,
+      renavam: renavam,
+      UF: UF,
+      plate: plate,
+      productionYear: productionYear,
+      modelYear: modelYear,
+      color: color,
     };
 
     const vehicles = JSON.parse(localStorage.getItem("vehicles")) ?? [];
-    localStorage.setItem("vehicles", JSON.stringify([...vehicles, vehicle]));
-    toast.success("Veículo cadastrado com sucesso!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      progress: undefined,
-    });
+    let newVehicles;
+    let toastMessage;
 
-    chassi.value = "";
-    renavam.value = "";
-    UF.value = "";
-    plate.value = "";
-    productionYear.value = "";
-    modelYear.value = "";
-    color.value = "";
+    if (location.state?.vehicle?.id) {
+      const index = vehicles.findIndex(
+        (item) => item.id === location.state.vehicle.id
+      );
+      newVehicles = [
+        ...vehicles.slice(0, index),
+        vehicle,
+        ...vehicles.slice(index + 1, vehicles.length),
+      ];
+      toastMessage = "Veículo editado com sucesso!";
+    } else {
+      newVehicles = [...vehicles, vehicle];
+      toastMessage = "Veículo cadastrado com sucesso!";
+    }
+
+    localStorage.setItem("vehicles", JSON.stringify(newVehicles));
+
+    toast.success(toastMessage);
+
+    setChassi("");
+    setRenavam("");
+    setUF("");
+    setPlate("");
+    setProductionYear("");
+    setModelYear("");
+    setColor("");
   };
 
   const goBack = (event) => {
@@ -76,6 +95,8 @@ export default function Register() {
               name="chassi"
               id="chassi"
               placeholder="Informe"
+              value={chassi}
+              onChange={(e) => setChassi(e.target.value)}
               required
             />
           </div>
@@ -84,17 +105,25 @@ export default function Register() {
             <label htmlFor="Renavam">Renavam</label>
             <input
               className="default-input"
-              type="text"
+              type="number"
               name="renavam"
               id="renavam"
               placeholder="Informe"
+              value={renavam}
+              onChange={(e) => setRenavam(e.target.value)}
               required
             />
           </div>
 
           <div className="form-item">
             <label htmlFor="uf">UF</label>
-            <select className="default-input" name="uf" id="uf">
+            <select
+              className="default-input"
+              name="uf"
+              id="uf"
+              value={UF}
+              onChange={(e) => setUF(e.target.value)}
+            >
               <option disabled>---</option>
               {estados.UF.map((uf) => (
                 <option key={uf.sigla} value={uf.sigla}>
@@ -112,6 +141,8 @@ export default function Register() {
               name="plate"
               id="plate"
               placeholder="Informe"
+              value={plate}
+              onChange={(e) => setPlate(e.target.value)}
               required
             />
           </div>
@@ -120,10 +151,12 @@ export default function Register() {
             <label htmlFor="ano-fabricacao">Ano Fabricação</label>
             <input
               className="default-input"
-              type="text"
-              name="made-year"
+              type="number"
+              name="production-year"
               id="production-year"
               placeholder="Informe"
+              value={productionYear}
+              onChange={(e) => setProductionYear(e.target.value)}
               required
             />
           </div>
@@ -132,10 +165,12 @@ export default function Register() {
             <label htmlFor="ano-modelo">Ano Modelo</label>
             <input
               className="default-input"
-              type="text"
+              type="number"
               name="model-year"
               id="model-year"
               placeholder="Informe"
+              value={modelYear}
+              onChange={(e) => setModelYear(e.target.value)}
               required
             />
           </div>
@@ -148,6 +183,8 @@ export default function Register() {
               name="color"
               id="color"
               placeholder="Informe"
+              value={color}
+              onChange={(e) => setColor(e.target.value)}
               required
             />
           </div>
@@ -156,7 +193,7 @@ export default function Register() {
             <button className="form-button button-primary" onClick={handleSave}>
               Cadastrar
             </button>
-            <button className="form-button" onClick={goBack}>
+            <button className="form-button button-secundary" onClick={goBack}>
               Cancelar
             </button>
           </div>

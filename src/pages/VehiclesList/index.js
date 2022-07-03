@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function VehiclesList() {
+  const navigate = useNavigate();
   const [vehicles, setVehicles] = useState(() => {
     const vehiclesList = localStorage.getItem("vehicles");
 
@@ -14,7 +16,13 @@ export default function VehiclesList() {
     }
   });
 
-  const handleEdit = () => {};
+  const handleEdit = (vehicle) => {
+    navigate("/register", {
+      state: {
+        vehicle,
+      },
+    });
+  };
 
   const handleDelete = (id) => {
     const newVehiclesList = vehicles.filter((vehicle) => vehicle.id !== id);
@@ -30,7 +38,7 @@ export default function VehiclesList() {
       <div className="search-wrapper">
         <input
           className="default-input search-input"
-          type="text"
+          type="search"
           name="search"
           id="search"
           placeholder="Pesquise"
@@ -67,7 +75,12 @@ export default function VehiclesList() {
               <td>{vehicle.color}</td>
               <td>
                 <div className="vehicle-actions">
-                  <button className="form-button">Editar</button>
+                  <button
+                    className="form-button button-secundary"
+                    onClick={() => handleEdit(vehicle)}
+                  >
+                    Editar
+                  </button>
                   <button
                     className="form-button button-danger"
                     onClick={() => handleDelete(vehicle.id)}

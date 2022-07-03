@@ -11,7 +11,12 @@ function App() {
       <div className="content">
         <AppRoutes />
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick={true}
+      />
     </div>
   );
 }

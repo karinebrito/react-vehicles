@@ -35,9 +35,14 @@
 
 .navbar-left {
   display: flex;
-  color: #ffffff;
   font-size: 24px;
   align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.navbar-text {
+  margin-left: 10px;
 }
 
 .navbar-right {
@@ -101,9 +106,27 @@
   color: #ffffff;
 }
 
+.form-button.button-danger:hover {
+  background-color: #cb6053;
+}
+
 .button-primary {
   background-color: #5048e5;
   color: #ffffff;
+  border-color: #5048e5;
+}
+
+.button-primary:hover {
+  background-color: #4039b7;
+}
+
+.button-secundary {
+  background-color: #ffffff;
+  border: 1px solid #dcdfe4;
+}
+
+.button-secundary:hover {
+  background-color: #e5e5e5;
 }
 
 .search-input {

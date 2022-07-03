@@ -9,7 +9,10 @@ function Header() {
   return (
     <header className="header">
       <div className="navbar">
-        <div className="navbar-left">Veículos</div>
+        <div className="navbar-left">
+          <img src="logo.png" alt="logo" width="42" height="34" />
+          <div className="navbar-text">Veículos</div>
+        </div>
 
         {location.pathname !== "/register" && (
           <div className="navbar-right">
