@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { toast } from "react-toastify";
 
 export default function VehiclesList() {
   const [vehicles, setVehicles] = useState(() => {
@@ -12,6 +13,15 @@ export default function VehiclesList() {
       return [];
     }
   });
+
+  const handleEdit = () => {};
+
+  const handleDelete = (id) => {
+    const newVehiclesList = vehicles.filter((vehicle) => vehicle.id !== id);
+    setVehicles(newVehiclesList);
+    localStorage.setItem("vehicles", JSON.stringify(newVehiclesList));
+    toast.success("Veículo excluído com sucesso!");
+  };
 
   return (
     <>
@@ -41,6 +51,7 @@ export default function VehiclesList() {
             <th>Ano de Fabricação</th>
             <th>Ano de Modelo</th>
             <th>Cor</th>
+            <th>Ações</th>
           </tr>
         </thead>
 
@@ -54,6 +65,17 @@ export default function VehiclesList() {
               <td>{vehicle.productionYear}</td>
               <td>{vehicle.modelYear}</td>
               <td>{vehicle.color}</td>
+              <td>
+                <div className="vehicle-actions">
+                  <button className="form-button">Editar</button>
+                  <button
+                    className="form-button button-danger"
+                    onClick={() => handleDelete(vehicle.id)}
+                  >
+                    Excluir
+                  </button>
+                </div>
+              </td>
             </tr>
           ))}
         </tbody>

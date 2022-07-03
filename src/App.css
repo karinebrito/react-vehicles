@@ -96,6 +96,11 @@
   cursor: pointer;
 }
 
+.form-button.button-danger {
+  background-color: #fe7968;
+  color: #ffffff;
+}
+
 .button-primary {
   background-color: #5048e5;
   color: #ffffff;
@@ -137,4 +142,8 @@
 
 .vehiclelist-table tr:last-child td {
   border: none;
+}
+
+.vehicle-actions {
+  display: flex;
 }
