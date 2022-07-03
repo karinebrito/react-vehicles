@@ -56,6 +56,10 @@
   align-items: center;
 }
 
+.arrow-header {
+  cursor: pointer;
+}
+
 .form {
   display: flex;
   padding: 16px;
@@ -114,23 +118,23 @@
   margin-right: 0px;
 }
 
-.carlist-table {
+.vehiclelist-table {
   border-collapse: collapse;
   margin-top: 16px;
 }
 
-.carlist-table th {
+.vehiclelist-table th {
   text-align: left;
   background-color: #f3f4f6;
   padding: 12px 16px;
   font-weight: 500;
 }
 
-.carlist-table td {
+.vehiclelist-table td {
   padding: 16px;
   border-bottom: 1px solid #f3f4f6;
 }
 
-.carlist-table tr:last-child td {
+.vehiclelist-table tr:last-child td {
   border: none;
 }

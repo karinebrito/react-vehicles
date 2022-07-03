@@ -2,26 +2,72 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import estados from "./estados.json";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const handleSave = (event) => {
+    const isFormValid = event.target.form.checkValidity();
+    if (!isFormValid) {
+      return;
+    }
     event.preventDefault();
-    const chassi = document.getElementById("chassi").value;
-    const renavam = document.getElementById("#renavam").value;
-    const uf = document.getElementById("uf").value;
+    const chassi = document.getElementById("chassi");
+    const renavam = document.getElementById("renavam");
+    const UF = document.getElementById("uf");
+    const plate = document.getElementById("plate");
     const productionYear = document.getElementById("production-year");
     const modelYear = document.getElementById("model-year");
+    const color = document.getElementById("color");
+
+    const vehicle = {
+      id: Date.now(),
+      chassi: chassi.value,
+      renavam: renavam.value,
+      UF: UF.value,
+      plate: plate.value,
+      productionYear: productionYear.value,
+      modelYear: modelYear.value,
+      color: color.value,
+    };
+
+    const vehicles = JSON.parse(localStorage.getItem("vehicles")) ?? [];
+    localStorage.setItem("vehicles", JSON.stringify([...vehicles, vehicle]));
+    toast.success("Veículo cadastrado com sucesso!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      progress: undefined,
+    });
+
+    chassi.value = "";
+    renavam.value = "";
+    UF.value = "";
+    plate.value = "";
+    productionYear.value = "";
+    modelYear.value = "";
+    color.value = "";
+  };
+
+  const goBack = (event) => {
+    event.preventDefault();
+    navigate("/");
   };
 
   return (
     <>
       <div className="register-header">
-        <FontAwesomeIcon icon={faArrowLeft} size="lg" />
+        <div className="arrow-header">
+          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={goBack} />
+        </div>
         <h1 className="container-title">Novo Veículo</h1>
       </div>
 
       <div className="form">
-        <form action="">
+        <form id="register-form" action="">
           <div className="form-item">
             <label htmlFor="chassi">Chassi</label>
             <input
@@ -59,6 +105,18 @@ export default function Register() {
           </div>
 
           <div className="form-item">
+            <label htmlFor="plate">Placa</label>
+            <input
+              className="default-input"
+              type="text"
+              name="plate"
+              id="plate"
+              placeholder="Informe"
+              required
+            />
+          </div>
+
+          <div className="form-item">
             <label htmlFor="ano-fabricacao">Ano Fabricação</label>
             <input
               className="default-input"
@@ -83,22 +141,24 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="Cor">Cor</label>
+            <label htmlFor="color">Cor</label>
             <input
               className="default-input"
               type="text"
-              name="cor"
-              id="cor"
+              name="color"
+              id="color"
               placeholder="Informe"
               required
             />
           </div>
 
           <div className="button-wrapper">
-            <button onClick={handleSave} className="form-button button-primary">
+            <button className="form-button button-primary" onClick={handleSave}>
               Cadastrar
             </button>
-            <button className="form-button">Cancelar</button>
+            <button className="form-button" onClick={goBack}>
+              Cancelar
+            </button>
           </div>
         </form>
       </div>

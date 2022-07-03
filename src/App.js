@@ -1,6 +1,8 @@
 import "./App.css";
 import Header from "./components/Header";
 import AppRoutes from "./routes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -9,6 +11,7 @@ function App() {
       <div className="content">
         <AppRoutes />
       </div>
+      <ToastContainer />
     </div>
   );
 }
