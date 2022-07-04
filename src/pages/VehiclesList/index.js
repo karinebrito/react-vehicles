@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function VehiclesList() {
   const navigate = useNavigate();
+
+  const [searchTerm, setSearchTerm] = useState("");
+
   const [vehicles, setVehicles] = useState(() => {
     const vehiclesList = localStorage.getItem("vehicles");
 
@@ -31,6 +34,14 @@ export default function VehiclesList() {
     toast.success("Veículo excluído com sucesso!");
   };
 
+  const filteredVehicles = !searchTerm
+    ? vehicles
+    : vehicles.filter(
+        (vehicle) =>
+          vehicle.renavam.includes(searchTerm) ||
+          vehicle.chassi.includes(searchTerm)
+      );
+
   return (
     <>
       <h1 className="container-title">Veículos Cadastrados</h1>
@@ -40,13 +51,10 @@ export default function VehiclesList() {
           className="default-input search-input"
           type="search"
           name="search"
-          id="search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Pesquise"
         />
-
-        <button className="search-button button-primary">
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
       </div>
 
       <table className="vehiclelist-table">
@@ -64,7 +72,7 @@ export default function VehiclesList() {
         </thead>
 
         <tbody>
-          {vehicles.map((vehicle) => (
+          {filteredVehicles.map((vehicle) => (
             <tr key={vehicle.id}>
               <td>{vehicle.chassi}</td>
               <td>{vehicle.renavam}</td>

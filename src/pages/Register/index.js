@@ -121,10 +121,13 @@ export default function Register() {
               className="default-input"
               name="uf"
               id="uf"
+              defaultValue={UF ?? ""}
               value={UF}
               onChange={(e) => setUF(e.target.value)}
             >
-              <option disabled>---</option>
+              <option value="" disabled>
+                ---
+              </option>
               {estados.UF.map((uf) => (
                 <option key={uf.sigla} value={uf.sigla}>
                   {uf.nome}
