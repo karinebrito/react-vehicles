@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +37,8 @@ export default function VehiclesList() {
     : vehicles.filter(
         (vehicle) =>
           vehicle.renavam.includes(searchTerm) ||
-          vehicle.chassi.includes(searchTerm)
+          vehicle.chassi.includes(searchTerm) ||
+          vehicle.plate.includes(searchTerm)
       );
 
   return (
@@ -53,7 +52,7 @@ export default function VehiclesList() {
           name="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Pesquise"
+          placeholder="Pesquise por CHASSI, RENAVAM ou PLACA"
         />
       </div>
 

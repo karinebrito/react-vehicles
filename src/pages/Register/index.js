@@ -18,8 +18,7 @@ export default function Register() {
   const [modelYear, setModelYear] = useState(
     location.state?.vehicle?.modelYear
   );
-  const [color, setColor] = useState("");
-  useState(location.state?.vehicle?.color);
+  const [color, setColor] = useState(location.state?.vehicle?.color);
 
   const handleSave = (event) => {
     const isFormValid = event.target.form.checkValidity();
@@ -151,7 +150,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="ano-fabricacao">Ano Fabricação</label>
+            <label htmlFor="production-year">Ano Fabricação</label>
             <input
               className="default-input"
               type="number"
@@ -165,7 +164,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="ano-modelo">Ano Modelo</label>
+            <label htmlFor="model-year">Ano Modelo</label>
             <input
               className="default-input"
               type="number"
