@@ -22,6 +22,3 @@ function App() {
 }
 
 export default App;
-// const texto = input.value;
-
-// console.log(texto);

@@ -87,7 +87,7 @@ export default function Register() {
       <div className="form">
         <form id="register-form" action="">
           <div className="form-item">
-            <label htmlFor="chassi">Chassi</label>
+            <label htmlFor="chassi">Chassi *</label>
             <input
               className="default-input"
               type="text"
@@ -96,12 +96,13 @@ export default function Register() {
               placeholder="Informe"
               value={chassi}
               onChange={(e) => setChassi(e.target.value)}
+              maxlength="17"
               required
             />
           </div>
 
           <div className="form-item">
-            <label htmlFor="Renavam">Renavam</label>
+            <label htmlFor="Renavam">Renavam *</label>
             <input
               className="default-input"
               type="number"
@@ -110,12 +111,13 @@ export default function Register() {
               placeholder="Informe"
               value={renavam}
               onChange={(e) => setRenavam(e.target.value)}
+              maxlength="11"
               required
             />
           </div>
 
           <div className="form-item">
-            <label htmlFor="uf">UF</label>
+            <label htmlFor="uf">UF *</label>
             <select
               className="default-input"
               name="uf"
@@ -136,7 +138,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="plate">Placa</label>
+            <label htmlFor="plate">Placa *</label>
             <input
               className="default-input"
               type="text"
@@ -145,12 +147,13 @@ export default function Register() {
               placeholder="Informe"
               value={plate}
               onChange={(e) => setPlate(e.target.value)}
+              maxlength="7"
               required
             />
           </div>
 
           <div className="form-item">
-            <label htmlFor="production-year">Ano Fabricação</label>
+            <label htmlFor="production-year">Ano Fabricação *</label>
             <input
               className="default-input"
               type="number"
@@ -159,12 +162,13 @@ export default function Register() {
               placeholder="Informe"
               value={productionYear}
               onChange={(e) => setProductionYear(e.target.value)}
+              maxlength="4"
               required
             />
           </div>
 
           <div className="form-item">
-            <label htmlFor="model-year">Ano Modelo</label>
+            <label htmlFor="model-year">Ano Modelo *</label>
             <input
               className="default-input"
               type="number"
@@ -173,12 +177,13 @@ export default function Register() {
               placeholder="Informe"
               value={modelYear}
               onChange={(e) => setModelYear(e.target.value)}
+              maxlength="4"
               required
             />
           </div>
 
           <div className="form-item">
-            <label htmlFor="color">Cor</label>
+            <label htmlFor="color">Cor *</label>
             <input
               className="default-input"
               type="text"

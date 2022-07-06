@@ -52,7 +52,7 @@ export default function VehiclesList() {
           name="search"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Pesquise por CHASSI, RENAVAM ou PLACA"
+          placeholder="Pesquise por Chassi, Renavam ou Placa"
         />
       </div>
 
