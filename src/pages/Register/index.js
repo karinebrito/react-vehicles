@@ -87,7 +87,9 @@ export default function Register() {
       <div className="form">
         <form id="register-form" action="">
           <div className="form-item">
-            <label htmlFor="chassi">Chassi *</label>
+            <h3 className="form-title">Preencha todos os campos abaixo:</h3>
+
+            <label htmlFor="chassi">Chassi</label>
             <input
               className="default-input"
               type="text"
@@ -102,7 +104,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="Renavam">Renavam *</label>
+            <label htmlFor="Renavam">Renavam</label>
             <input
               className="default-input"
               type="number"
@@ -117,7 +119,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="uf">UF *</label>
+            <label htmlFor="uf">UF </label>
             <select
               className="default-input"
               name="uf"
@@ -138,7 +140,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="plate">Placa *</label>
+            <label htmlFor="plate">Placa</label>
             <input
               className="default-input"
               type="text"
@@ -153,7 +155,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="production-year">Ano Fabricação *</label>
+            <label htmlFor="production-year">Ano Fabricação</label>
             <input
               className="default-input"
               type="number"
@@ -168,7 +170,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="model-year">Ano Modelo *</label>
+            <label htmlFor="model-year">Ano Modelo</label>
             <input
               className="default-input"
               type="number"
@@ -183,7 +185,7 @@ export default function Register() {
           </div>
 
           <div className="form-item">
-            <label htmlFor="color">Cor *</label>
+            <label htmlFor="color">Cor</label>
             <input
               className="default-input"
               type="text"

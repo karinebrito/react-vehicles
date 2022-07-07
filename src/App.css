@@ -87,6 +87,11 @@
   margin-bottom: 16px;
 }
 
+.form-title {
+  font-weight: 400;
+  font-size: 17px;
+}
+
 .button-wrapper {
   display: flex;
 }
