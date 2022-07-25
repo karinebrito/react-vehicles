@@ -1,6 +1,6 @@
-## Vehicles
 
-### This project was created using Create React App
+
+## This project was created using Create React App
 
 ### The project is vehicle crud (grid + form)
 
